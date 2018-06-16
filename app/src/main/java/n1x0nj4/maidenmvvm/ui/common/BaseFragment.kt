@@ -10,18 +10,12 @@ import com.github.ajalt.timberkt.d
 import dagger.android.AndroidInjection
 import dagger.android.support.DaggerFragment
 import n1x0nj4.maidenmvvm.R
+import n1x0nj4.maidenmvvm.util.ActionBarResourceProvider
 
 abstract class BaseFragment : DaggerFragment(), BaseView {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
+    
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(contentViewResource, container, false)
-
-        return view
+        return inflater.inflate(contentViewResource, container, false)
     }
 
     fun injectDependencies() {
@@ -30,17 +24,17 @@ abstract class BaseFragment : DaggerFragment(), BaseView {
 
     protected open val contentViewResource: Int = 0
 
-//    protected fun setActionBarTitle(title: String) {
-//        if (activity != null && activity is ActionBarResourceProvider) {
-//            (activity as ActionBarResourceProvider).setTitle(title)
-//        }
-//    }
-//
-//    protected fun setActionBarIcon(icon: Int) {
-//        if (activity != null && activity is ActionBarResourceProvider) {
-//            (activity as ActionBarResourceProvider).setIcon(icon)
-//        }
-//    }
+    protected fun setActionBarTitle(title: String) {
+        if (activity != null && activity is ActionBarResourceProvider) {
+            (activity as ActionBarResourceProvider).setTitle(title)
+        }
+    }
+
+    protected fun setActionBarIcon(icon: Int) {
+        if (activity != null && activity is ActionBarResourceProvider) {
+            (activity as ActionBarResourceProvider).setIcon(icon)
+        }
+    }
 
     override fun showLoading() {
         if (activity is BaseActivity) {
