@@ -2,17 +2,14 @@ package n1x0nj4.maidenmvvm.ui.restaurants
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
 import com.github.ajalt.timberkt.d
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import n1x0nj4.maidenmvvm.model.Restaurant
 import n1x0nj4.maidenmvvm.repository.RestaurantsRepository
 import n1x0nj4.maidenmvvm.ui.common.BaseViewModel
 import n1x0nj4.maidenmvvm.util.Status
 import javax.inject.Inject
-
 
 class RestaurantViewModel @Inject constructor(private val restaurantsRepository: RestaurantsRepository) : BaseViewModel() {
 
