@@ -9,32 +9,16 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import n1x0nj4.maidenmvvm.model.Restaurant
 import n1x0nj4.maidenmvvm.repository.RestaurantsRepository
+import n1x0nj4.maidenmvvm.ui.common.BaseViewModel
 import n1x0nj4.maidenmvvm.util.Status
 import javax.inject.Inject
 
 
-class RestaurantViewModel @Inject constructor(private val restaurantsRepository: RestaurantsRepository) : ViewModel() {
-
-    private var disposable: Disposable? = null
-
-    private val _status: MutableLiveData<Status> = MutableLiveData()
-    val status: LiveData<Status>
-        get() = _status
-
+class RestaurantViewModel @Inject constructor(private val restaurantsRepository: RestaurantsRepository) : BaseViewModel() {
 
     private val _restaurantResult: MutableLiveData<List<Restaurant>> = MutableLiveData()
     val restaurantResult: LiveData<List<Restaurant>>
         get() = _restaurantResult
-
-
-    init {
-        _status.value = Status.SUCCESS
-    }
-
-    override fun onCleared() {
-        disposable?.dispose()
-        super.onCleared()
-    }
 
     fun getRestaurants() {
 
