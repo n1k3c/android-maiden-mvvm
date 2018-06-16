@@ -8,12 +8,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import n1x0nj4.maidenmvvm.model.Restaurant
-import n1x0nj4.maidenmvvm.repository.GetRestaurantsRepository
+import n1x0nj4.maidenmvvm.repository.RestaurantsRepository
 import n1x0nj4.maidenmvvm.util.Status
 import javax.inject.Inject
 
 
-class RestaurantViewModel @Inject constructor(private val getRestaurantsRepository: GetRestaurantsRepository) : ViewModel() {
+class RestaurantViewModel @Inject constructor(private val restaurantsRepository: RestaurantsRepository) : ViewModel() {
 
     private var disposable: Disposable? = null
 
@@ -42,7 +42,7 @@ class RestaurantViewModel @Inject constructor(private val getRestaurantsReposito
 
         _status.value = Status.LOADING
 
-        disposable = getRestaurantsRepository.fetchRestaurantsFromAPI()
+        disposable = restaurantsRepository.fetchRestaurantsFromAPI()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

@@ -5,7 +5,7 @@ import n1x0nj4.maidenmvvm.api.ApiService
 import n1x0nj4.maidenmvvm.model.Restaurant
 import javax.inject.Inject
 
-class GetRestaurantsRepository @Inject constructor() {
+class RestaurantsRepository @Inject constructor() {
 
     @Inject
     lateinit var apiService: ApiService
