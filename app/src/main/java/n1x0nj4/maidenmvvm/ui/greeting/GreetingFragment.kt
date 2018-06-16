@@ -20,16 +20,9 @@ class GreetingFragment : BaseFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    lateinit var viewModel: GreetingViewModel
+    private lateinit var viewModel: GreetingViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.greeting_fragment, container, false)
-    }
-
-    override fun injectDependencies() {
-        AndroidInjection.inject(activity)
-    }
+    override val contentViewResource: Int = R.layout.greeting_fragment
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -43,7 +36,6 @@ class GreetingFragment : BaseFragment() {
                 tvGreetingText.text = "No greeting for now"
             }
         })
-
 
         viewModel.status.observe(this, Observer<Status> {
             when (it) {

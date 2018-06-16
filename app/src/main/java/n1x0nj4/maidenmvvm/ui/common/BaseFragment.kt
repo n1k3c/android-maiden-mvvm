@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.ajalt.timberkt.d
+import dagger.android.AndroidInjection
 import dagger.android.support.DaggerFragment
 import n1x0nj4.maidenmvvm.R
 
@@ -23,7 +24,9 @@ abstract class BaseFragment : DaggerFragment(), BaseView {
         return view
     }
 
-    protected abstract fun injectDependencies()
+    fun injectDependencies() {
+        AndroidInjection.inject(activity)
+    }
 
     protected open val contentViewResource: Int = 0
 
