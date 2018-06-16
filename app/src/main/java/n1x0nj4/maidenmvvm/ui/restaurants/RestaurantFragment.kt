@@ -3,6 +3,10 @@ package n1x0nj4.maidenmvvm.ui.restaurants
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.design.widget.Snackbar
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import com.github.ajalt.timberkt.d
 import com.jurajkusnier.androidapptemplate.di.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_restaurants.*
@@ -12,7 +16,7 @@ import n1x0nj4.maidenmvvm.ui.common.BaseFragment
 import n1x0nj4.maidenmvvm.util.Status
 import javax.inject.Inject
 
-class RestaurantFragment : BaseFragment() {
+class RestaurantFragment : BaseFragment(), RestaurantsAdapter.OnRestaurantClickListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -28,9 +32,12 @@ class RestaurantFragment : BaseFragment() {
 
         viewModel.restaurantResult.observe(this, Observer<List<Restaurant>> { restaurants ->
             if (restaurants?.isNotEmpty() == true) {
-                restaurants.forEach {
-                    d { it.toString() }
-                }
+                recyclerView.hasFixedSize()
+                val adapter = RestaurantsAdapter(restaurants)
+                adapter.setOnRestaurantClickListener(this)
+                recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+                recyclerView.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+                recyclerView.adapter = adapter
             } else {
 
             }
@@ -45,5 +52,9 @@ class RestaurantFragment : BaseFragment() {
         })
 
         viewModel.getRestaurants()
+    }
+
+    override fun onRestaurantClicked(restaurant: Restaurant) {
+        Snackbar.make(coordinator, restaurant.name.toString(), Snackbar.LENGTH_SHORT).show()
     }
 }
