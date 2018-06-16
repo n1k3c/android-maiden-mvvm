@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.github.ajalt.timberkt.d
 import com.jurajkusnier.androidapptemplate.di.ViewModelFactory
-import kotlinx.android.synthetic.main.greeting_fragment.*
+import kotlinx.android.synthetic.main.fragment_restaurants.*
 import n1x0nj4.maidenmvvm.R
 import n1x0nj4.maidenmvvm.model.Restaurant
 import n1x0nj4.maidenmvvm.ui.common.BaseFragment
@@ -19,21 +19,20 @@ class RestaurantFragment : BaseFragment() {
 
     private lateinit var viewModel: RestaurantViewModel
 
-    override val contentViewResource: Int = R.layout.greeting_fragment
+    override val contentViewResource: Int = R.layout.fragment_restaurants
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(RestaurantViewModel::class.java)
 
-        viewModel.restaurantResult.observe(this, Observer<List<Restaurant>> { t ->
-            if (t?.isNotEmpty() == true) {
-                t.forEach {
+        viewModel.restaurantResult.observe(this, Observer<List<Restaurant>> { restaurants ->
+            if (restaurants?.isNotEmpty() == true) {
+                restaurants.forEach {
                     d { it.toString() }
-                    tvGreetingText.text = "Restaurants loaded"
                 }
             } else {
-                tvGreetingText.text = "No restaurants"
+
             }
         })
 
