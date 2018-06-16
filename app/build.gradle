@@ -84,6 +84,9 @@ dependencies {
     testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.testRunner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
+    testImplementation "android.arch.core:core-testing:$project.archVersion"
+    testImplementation "org.mockito:mockito-core:$project.mockitoVersion"
+    testImplementation "org.mockito:mockito-inline:$project.mockitoVersion"
     // Dagger
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
     implementation "com.google.dagger:dagger-android:$rootProject.daggerVersion"
