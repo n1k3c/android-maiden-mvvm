@@ -45,7 +45,7 @@ android {
             // applicationIdSuffix '.development'
             // TODO: Add signing config for debug
             // signingConfig signingConfigs.release
-            buildConfigField STRING, API_URL, '"https://api.com"'
+            buildConfigField STRING, API_URL, '"http://www.mocky.io/"'
             // manifestPlaceholders = [crashlyticsEnabled: false]
         }
 
@@ -54,7 +54,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             // TODO: Add signing config for release
             signingConfig signingConfigs.release
-            buildConfigField STRING, API_URL, '"https://api.com"'
+            buildConfigField STRING, API_URL, '"http://www.mocky.io/"'
             // manifestPlaceholders = [crashlyticsEnabled: true]
         }
     }

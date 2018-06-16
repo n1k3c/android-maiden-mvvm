@@ -1,4 +1,4 @@
-package n1x0nj4.maidenmvvm.ui.greeting
+package n1x0nj4.maidenmvvm.ui.restaurants
 
 import android.arch.lifecycle.ViewModel
 import com.jurajkusnier.androidapptemplate.di.ViewModelKey
@@ -8,13 +8,13 @@ import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 
 @Module
-internal abstract class GreetingFragmentModule {
+internal abstract class RestaurantFragmentModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(GreetingViewModel::class)
-    abstract fun bindGreetingViewModel(viewModel: GreetingViewModel): ViewModel
+    @ViewModelKey(RestaurantViewModel::class)
+    abstract fun bindGreetingViewModel(viewModel: RestaurantViewModel): ViewModel
 
     @ContributesAndroidInjector
-    abstract fun contributeGreetingFragment(): GreetingFragment
+    abstract fun contributeGreetingFragment(): RestaurantFragment
 }

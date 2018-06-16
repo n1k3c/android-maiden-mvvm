@@ -13,7 +13,7 @@ import n1x0nj4.maidenmvvm.R
 import n1x0nj4.maidenmvvm.util.ActionBarResourceProvider
 
 abstract class BaseFragment : DaggerFragment(), BaseView {
-    
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(contentViewResource, container, false)
     }

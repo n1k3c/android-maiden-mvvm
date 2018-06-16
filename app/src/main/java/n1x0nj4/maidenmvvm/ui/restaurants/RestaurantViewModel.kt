@@ -1,17 +1,19 @@
-package n1x0nj4.maidenmvvm.ui.greeting
+package n1x0nj4.maidenmvvm.ui.restaurants
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import com.github.ajalt.timberkt.d
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import n1x0nj4.maidenmvvm.repository.SayHelloRepository
+import n1x0nj4.maidenmvvm.model.Restaurant
+import n1x0nj4.maidenmvvm.repository.GetRestaurantsRepository
 import n1x0nj4.maidenmvvm.util.Status
 import javax.inject.Inject
 
 
-class GreetingViewModel @Inject constructor(private val sayHelloRepository: SayHelloRepository) : ViewModel() {
+class RestaurantViewModel @Inject constructor(private val getRestaurantsRepository: GetRestaurantsRepository) : ViewModel() {
 
     private var disposable: Disposable? = null
 
@@ -20,9 +22,9 @@ class GreetingViewModel @Inject constructor(private val sayHelloRepository: SayH
         get() = _status
 
 
-    private val _greetingResult: MutableLiveData<String> = MutableLiveData()
-    val greetingResult: LiveData<String>
-        get() = _greetingResult
+    private val _restaurantResult: MutableLiveData<List<Restaurant>> = MutableLiveData()
+    val restaurantResult: LiveData<List<Restaurant>>
+        get() = _restaurantResult
 
 
     init {
@@ -34,24 +36,24 @@ class GreetingViewModel @Inject constructor(private val sayHelloRepository: SayH
         super.onCleared()
     }
 
-    fun sayHello(greeting: String?) {
+    fun getRestaurants() {
 
         disposable?.dispose()
 
         _status.value = Status.LOADING
 
-        disposable = sayHelloRepository.sayHello(greeting!!)
+        disposable = getRestaurantsRepository.fetchRestaurantsFromAPI()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { data ->
-                            _greetingResult.value = data
+                            _restaurantResult.value = data
                             _status.value = Status.SUCCESS
                         },
                         { error ->
+                            d { error.toString() }
                             _status.value = Status.ERROR
                         }
                 )
     }
-
 }
