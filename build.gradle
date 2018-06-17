@@ -54,6 +54,8 @@ ext {
     archVersion = '1.1.1'
     timberKtVersion = '1.5.0'
     stethoVersion = '1.5.0'
+    pagingVersion = '1.0.0'
+    pagingRxVersion = '1.0.0-rc1'
 //    drawer = '1.2.2'
 //    facebook = '4.29.0'
 //    playServices = '15.0.1'

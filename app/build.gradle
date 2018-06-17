@@ -119,5 +119,8 @@ dependencies {
     // Stetho
     implementation "com.facebook.stetho:stetho:$rootProject.stethoVersion"
     implementation "com.facebook.stetho:stetho-okhttp3:$rootProject.stethoVersion"
+    // Paging
+    implementation "android.arch.paging:runtime:$rootProject.pagingVersion"
+    implementation "android.arch.paging:rxjava2:$rootProject.pagingRxVersion"
 
 }
