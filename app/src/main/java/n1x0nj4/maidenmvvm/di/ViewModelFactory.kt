@@ -1,4 +1,4 @@
-package com.jurajkusnier.androidapptemplate.di
+package n1x0nj4.maidenmvvm.di
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider

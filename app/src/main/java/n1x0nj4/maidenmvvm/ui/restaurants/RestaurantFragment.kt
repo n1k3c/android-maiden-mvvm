@@ -6,13 +6,15 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.github.ajalt.timberkt.d
-import com.jurajkusnier.androidapptemplate.di.ViewModelFactory
+import n1x0nj4.maidenmvvm.di.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_restaurants.*
 import n1x0nj4.maidenmvvm.R
 import n1x0nj4.maidenmvvm.model.Restaurant
+import n1x0nj4.maidenmvvm.state.Resource
+import n1x0nj4.maidenmvvm.state.ResourceState
 import n1x0nj4.maidenmvvm.ui.common.BaseFragment
-import n1x0nj4.maidenmvvm.util.Status
 import javax.inject.Inject
 
 class RestaurantFragment : BaseFragment(), RestaurantsAdapter.OnRestaurantClickListener {
@@ -29,28 +31,50 @@ class RestaurantFragment : BaseFragment(), RestaurantsAdapter.OnRestaurantClickL
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(RestaurantViewModel::class.java)
 
-        viewModel.restaurantResult.observe(this, Observer<List<Restaurant>> { restaurants ->
-            if (restaurants?.isNotEmpty() == true) {
-                recyclerView.hasFixedSize()
-                val adapter = RestaurantsAdapter(restaurants)
-                adapter.setOnRestaurantClickListener(this)
-                recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-                recyclerView.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
-                recyclerView.adapter = adapter
-            } else {
-
-            }
-        })
-
-        viewModel.status.observe(this, Observer<Status> {
-            when (it) {
-                Status.LOADING -> d { "Loading state" }
-                Status.SUCCESS -> d { "Success state" }
-                Status.ERROR -> d { "Error state" }
-            }
-        })
-
         viewModel.getRestaurants()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        viewModel.restaurantResult.observe(this,
+                Observer<Resource<List<Restaurant>>> {
+                    it?.let {
+                        handleDataState(it)
+                    }
+                })
+    }
+
+    private fun handleDataState(resource: Resource<List<Restaurant>>) {
+        when (resource.status) {
+            ResourceState.SUCCESS -> {
+                d { "Success state" }
+                setupScreenForSuccess(resource.data)
+            }
+            ResourceState.ERROR -> {
+                d { "Error state" }
+            }
+            ResourceState.LOADING -> {
+                d { "Loading state" }
+                progress.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun setupScreenForSuccess(restaurants: List<Restaurant>?) {
+        progress.visibility = View.GONE
+        restaurants?.let {
+            recyclerView.hasFixedSize()
+            val adapter = RestaurantsAdapter(it)
+            adapter.setOnRestaurantClickListener(this)
+            recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+            recyclerView.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+            recyclerView.adapter = adapter
+            recyclerView.visibility = View.VISIBLE
+        } ?: run {
+
+        }
     }
 
     override fun onRestaurantClicked(restaurant: Restaurant) {
