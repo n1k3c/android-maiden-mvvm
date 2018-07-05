@@ -1,4 +1,4 @@
-package n1x0nj4.maidenmvvm.api
+package n1x0nj4.maidenmvvm.di.module
 
 
 import android.content.Context
@@ -8,6 +8,8 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import n1x0nj4.maidenmvvm.BuildConfig
+import n1x0nj4.maidenmvvm.api.ApiService
+import n1x0nj4.maidenmvvm.api.CheckInternetConnection
 import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

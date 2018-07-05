@@ -7,7 +7,8 @@ import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import dagger.android.support.AndroidSupportInjectionModule
 import n1x0nj4.maidenmvvm.App
-import n1x0nj4.maidenmvvm.ui.common.MainActivityModule
+import n1x0nj4.maidenmvvm.di.module.AppModule
+import n1x0nj4.maidenmvvm.di.module.MainActivityModule
 import javax.inject.Singleton
 
 @Singleton

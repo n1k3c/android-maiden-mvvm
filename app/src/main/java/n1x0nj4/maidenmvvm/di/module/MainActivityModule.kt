@@ -1,11 +1,11 @@
-package n1x0nj4.maidenmvvm.ui.common
+package n1x0nj4.maidenmvvm.di.module
 
 import android.arch.lifecycle.ViewModelProvider
 import com.jurajkusnier.androidapptemplate.di.ViewModelFactory
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import n1x0nj4.maidenmvvm.ui.restaurants.RestaurantFragmentModule
+import n1x0nj4.maidenmvvm.ui.restaurants.MainActivity
 
 @Module
 internal abstract class MainActivityModule {
