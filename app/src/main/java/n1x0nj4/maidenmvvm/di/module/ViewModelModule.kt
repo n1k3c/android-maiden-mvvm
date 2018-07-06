@@ -11,7 +11,7 @@ import n1x0nj4.maidenmvvm.ui.restaurants.RestaurantViewModel
 import kotlin.reflect.KClass
 
 @Module
-abstract class PresentationModule {
+abstract class ViewModelModule {
 
     @Binds
     @IntoMap

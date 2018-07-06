@@ -1,22 +1,16 @@
-package co.joebirch.mobile_ui.injection.module
+package n1x0nj4.maidenmvvm.di.module
 
-import co.joebirch.domain.executor.PostExecutionThread
-import co.joebirch.mobile_ui.UiThread
-import co.joebirch.mobile_ui.bookmarked.BookmarkedActivity
-import co.joebirch.mobile_ui.browse.BrowseActivity
-import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import n1x0nj4.maidenmvvm.ui.restaurants.MainActivity
+import n1x0nj4.maidenmvvm.ui.restaurants.RestaurantFragment
 
 @Module
 abstract class UiModule {
 
-    @Binds
-    abstract fun bindPostExecutionThread(uiThread: UiThread): PostExecutionThread
+    @ContributesAndroidInjector
+    abstract fun contributesBrowseActivity(): MainActivity
 
     @ContributesAndroidInjector
-    abstract fun contributesBrowseActivity(): BrowseActivity
-
-    @ContributesAndroidInjector
-    abstract fun contributesBookmarkedActivity(): BookmarkedActivity
+    abstract fun contributesBookmarkedActivity(): RestaurantFragment
 }
