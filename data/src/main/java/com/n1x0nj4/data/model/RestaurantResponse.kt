@@ -2,7 +2,7 @@ package com.n1x0nj4.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Restaurant(
+data class RestaurantResponse(
         @SerializedName("Name")
         val name: String?,
         @SerializedName("Address")

@@ -11,7 +11,7 @@ import com.github.ajalt.timberkt.d
 import kotlinx.android.synthetic.main.fragment_restaurants.*
 import n1x0nj4.maidenmvvm.R
 import n1x0nj4.maidenmvvm.di.ViewModelFactory
-import com.n1x0nj4.data.model.Restaurant
+import com.n1x0nj4.data.model.RestaurantResponse
 import n1x0nj4.maidenmvvm.state.Resource
 import n1x0nj4.maidenmvvm.state.ResourceState
 import n1x0nj4.maidenmvvm.ui.common.BaseFragment
@@ -38,14 +38,14 @@ class RestaurantFragment : BaseFragment(), RestaurantsAdapter.OnRestaurantClickL
         super.onStart()
 
         viewModel.restaurantResult.observe(this,
-                Observer<Resource<List<Restaurant>>> {
+                Observer<Resource<List<RestaurantResponse>>> {
                     it?.let {
                         handleDataState(it)
                     }
                 })
     }
 
-    private fun handleDataState(resource: Resource<List<Restaurant>>) {
+    private fun handleDataState(resource: Resource<List<RestaurantResponse>>) {
         when (resource.status) {
             ResourceState.SUCCESS -> {
                 d { "Success state" }
@@ -62,7 +62,7 @@ class RestaurantFragment : BaseFragment(), RestaurantsAdapter.OnRestaurantClickL
         }
     }
 
-    private fun setupScreenForSuccess(restaurants: List<Restaurant>?) {
+    private fun setupScreenForSuccess(restaurants: List<RestaurantResponse>?) {
         progress.visibility = View.GONE
         restaurants?.let {
             recyclerView.hasFixedSize()
@@ -77,7 +77,7 @@ class RestaurantFragment : BaseFragment(), RestaurantsAdapter.OnRestaurantClickL
         }
     }
 
-    override fun onRestaurantClicked(restaurant: Restaurant) {
+    override fun onRestaurantClicked(restaurant: RestaurantResponse) {
         Snackbar.make(coordinator, restaurant.name.toString(), Snackbar.LENGTH_SHORT).show()
     }
 }
