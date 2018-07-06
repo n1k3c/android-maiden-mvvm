@@ -31,8 +31,6 @@ abstract class BaseActivity : DaggerAppCompatActivity(), BaseView {
             setSupportActionBar(toolbar)
             supportActionBar?.setDisplayShowTitleEnabled(true)
         }
-
-
     }
 
     protected abstract val contentViewResource: Int

@@ -8,9 +8,9 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.github.ajalt.timberkt.d
-import n1x0nj4.maidenmvvm.di.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_restaurants.*
 import n1x0nj4.maidenmvvm.R
+import n1x0nj4.maidenmvvm.di.ViewModelFactory
 import n1x0nj4.maidenmvvm.model.Restaurant
 import n1x0nj4.maidenmvvm.state.Resource
 import n1x0nj4.maidenmvvm.state.ResourceState
