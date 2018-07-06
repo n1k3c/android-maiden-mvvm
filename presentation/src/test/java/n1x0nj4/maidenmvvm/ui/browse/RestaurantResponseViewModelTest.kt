@@ -1,7 +1,7 @@
-package n1x0nj4.maidenmvvm.ui.restaurants
+package n1x0nj4.maidenmvvm.ui.browse
 
-import com.n1x0nj4.data.model.RestaurantResponse
 import com.n1x0nj4.data.RestaurantsRemoteImpl
+import com.n1x0nj4.data.remote.model.RestaurantResponse
 import org.mockito.Mock
 import org.mockito.Mockito.`when` as whenever
 

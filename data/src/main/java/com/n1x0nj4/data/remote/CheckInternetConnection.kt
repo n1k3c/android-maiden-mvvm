@@ -1,4 +1,4 @@
-package com.n1x0nj4.data.api
+package com.n1x0nj4.data.remote
 
 import android.content.Context
 import android.net.ConnectivityManager

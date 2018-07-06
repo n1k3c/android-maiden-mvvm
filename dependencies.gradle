@@ -28,6 +28,7 @@ ext {
     archCompVersion = '1.1.1'
     roomVersion = '1.0.0'
     constraintLayoutVersion = '1.1.2'
+    stethoVersion = '1.5.0'
 
     //Testing
     jUnitVersion = '4.12'
@@ -70,7 +71,8 @@ ext {
             okHttpLogger:       "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
             retrofit:           "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             retrofitConverter:  "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
-            retrofitAdapter:    "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+            retrofitAdapter:    "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+            stethoHttp:         "com.facebook.stetho:stetho-okhttp3:${stethoVersion}"
     ]
 
     dataTestDependencies = [
@@ -111,6 +113,8 @@ ext {
             archRuntime:        "android.arch.lifecycle:runtime:${archCompVersion}",
             archExtensions:     "android.arch.lifecycle:extensions:${archCompVersion}",
             archCompiler:       "android.arch.lifecycle:compiler:${archCompVersion}",
+            stetho:             "com.facebook.stetho:stetho:${stethoVersion}",
+            stethoHttp:         "com.facebook.stetho:stetho-okhttp3:${stethoVersion}"
     ]
 
     presentationTestDependencies = [

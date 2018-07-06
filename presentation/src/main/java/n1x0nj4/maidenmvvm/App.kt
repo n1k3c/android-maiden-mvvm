@@ -1,5 +1,6 @@
 package n1x0nj4.maidenmvvm
 
+import com.facebook.stetho.Stetho
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import n1x0nj4.maidenmvvm.di.DaggerAppComponent
@@ -13,10 +14,10 @@ class App : DaggerApplication() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
-//        Stetho.initialize(
-//                Stetho.newInitializerBuilder(this)
-//                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
-//                        .build())
+        Stetho.initialize(
+                Stetho.newInitializerBuilder(this)
+                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                        .build())
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {

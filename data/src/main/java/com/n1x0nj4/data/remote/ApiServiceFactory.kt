@@ -1,6 +1,7 @@
-package com.n1x0nj4.data.api
+package com.n1x0nj4.data.remote
 
 import android.content.Context
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -31,14 +32,14 @@ object ApiServiceFactory {
         return OkHttpClient.Builder()
                 .cache(cache)
                 .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
-                // .addNetworkInterceptor(StethoInterceptor())
+                .addNetworkInterceptor(StethoInterceptor())
                 .addNetworkInterceptor(rewriteOnlineResponseInterceptor())
                 .addInterceptor(rewriteOfflineResponseInterceptor(context))
                 .build()
     }
 
     private fun createRetrofit(okHttpClient: OkHttpClient): Retrofit {
-      return Retrofit.Builder()
+        return Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)

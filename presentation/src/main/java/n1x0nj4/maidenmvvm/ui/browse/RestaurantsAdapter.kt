@@ -1,4 +1,4 @@
-package n1x0nj4.maidenmvvm.ui.restaurants
+package n1x0nj4.maidenmvvm.ui.browse
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import n1x0nj4.maidenmvvm.R
-import com.n1x0nj4.data.model.RestaurantResponse
+import n1x0nj4.maidenmvvm.model.RestaurantView
 
-class RestaurantsAdapter(private val restaurants: List<RestaurantResponse>) : RecyclerView.Adapter<RestaurantsAdapter.SingleItemRowHolder>() {
+class RestaurantsAdapter(private val restaurants: List<RestaurantView>) : RecyclerView.Adapter<RestaurantsAdapter.SingleItemRowHolder>() {
 
     private lateinit var onRestaurantClickListener: OnRestaurantClickListener
 
@@ -48,6 +48,6 @@ class RestaurantsAdapter(private val restaurants: List<RestaurantResponse>) : Re
     }
 
     interface OnRestaurantClickListener {
-        fun onRestaurantClicked(restaurant: RestaurantResponse)
+        fun onRestaurantClicked(restaurant: RestaurantView)
     }
 }

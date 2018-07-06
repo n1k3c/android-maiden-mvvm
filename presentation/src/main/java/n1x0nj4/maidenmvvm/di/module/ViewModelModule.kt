@@ -7,7 +7,7 @@ import dagger.MapKey
 import dagger.Module
 import dagger.multibindings.IntoMap
 import n1x0nj4.maidenmvvm.di.ViewModelFactory
-import n1x0nj4.maidenmvvm.ui.restaurants.RestaurantViewModel
+import n1x0nj4.maidenmvvm.ui.browse.RestaurantViewModel
 import kotlin.reflect.KClass
 
 @Module

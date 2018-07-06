@@ -119,6 +119,7 @@ dependencies {
     implementation presentationDependencies.glide
     implementation presentationDependencies.dagger
     implementation presentationDependencies.daggerSupport
+    implementation presentationDependencies.stethoHttp
 
     implementation presentationDependencies.archRuntime
     implementation presentationDependencies.archExtensions

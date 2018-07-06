@@ -1,2 +1,2 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.n1x0nj4.data"/>
+<manifest
+        package="com.n1x0nj4.data"/>

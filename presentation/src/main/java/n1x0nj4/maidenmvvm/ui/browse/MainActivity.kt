@@ -1,4 +1,4 @@
-package n1x0nj4.maidenmvvm.ui.restaurants
+package n1x0nj4.maidenmvvm.ui.browse
 
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*

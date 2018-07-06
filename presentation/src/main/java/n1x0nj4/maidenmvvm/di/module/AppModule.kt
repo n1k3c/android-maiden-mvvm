@@ -5,7 +5,7 @@ import android.content.Context
 import dagger.Binds
 import dagger.Module
 
-@Module(includes = [ApiModule::class])
+@Module(includes = [ApiModule::class, CacheModule::class])
 abstract class AppModule {
 
     @Binds

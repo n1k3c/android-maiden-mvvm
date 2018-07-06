@@ -45,6 +45,7 @@ dependencies {
     implementation dataDependencies.retrofit
     implementation dataDependencies.retrofitConverter
     implementation dataDependencies.retrofitAdapter
+    implementation dataDependencies.stethoHttp
 
     testImplementation dataTestDependencies.junit
     testImplementation dataTestDependencies.kotlinJUnit

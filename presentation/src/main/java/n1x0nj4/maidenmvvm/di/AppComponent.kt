@@ -8,12 +8,17 @@ import dagger.android.DaggerApplication
 import dagger.android.support.AndroidSupportInjectionModule
 import n1x0nj4.maidenmvvm.App
 import n1x0nj4.maidenmvvm.di.module.AppModule
-import n1x0nj4.maidenmvvm.di.module.UiModule
+import n1x0nj4.maidenmvvm.di.module.DataModule
+import n1x0nj4.maidenmvvm.di.module.PresentationModule
 import n1x0nj4.maidenmvvm.di.module.ViewModelModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AndroidSupportInjectionModule::class, AppModule::class, UiModule::class, ViewModelModule::class])
+@Component(modules = [AndroidSupportInjectionModule::class,
+    AppModule::class,
+    DataModule::class,
+    PresentationModule::class,
+    ViewModelModule::class])
 interface AppComponent : AndroidInjector<DaggerApplication> {
 
     fun inject(app: App)
