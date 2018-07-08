@@ -38,6 +38,7 @@ ext {
     robolectricVersion = '3.4.2'
     mockitoVersion = '1.9.5'
     mockitoAndroidVersion = '2.8.9'
+    mockitoInlineVersion = '2.13.0'
     androidSupportRunnerVersion = '1.0.0'
     androidSupportRulesVersion = '1.0.0'
     dexmakerMockitoversion = '2.2.0'
@@ -122,6 +123,7 @@ ext {
             kotlinJUnit:        "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
             assertj:            "org.assertj:assertj-core:${assertJVersion}",
             mockito:            "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
+            mockitoInline:      "org.mockito:mockito-inline:${mockitoInlineVersion}",
             supportRunner:      "com.android.support.test:runner:${androidSupportRunnerVersion}",
             supportRules:       "com.android.support.test:rules:${androidSupportRulesVersion}",
             mockitoAndroid:     "org.mockito:mockito-android:${mockitoAndroidVersion}",
@@ -129,6 +131,8 @@ ext {
             espressoIntents:    "com.android.support.test.espresso:espresso-intents:${espressoVersion}",
             espressoContrib:    "com.android.support.test.espresso:espresso-contrib:${espressoVersion}",
             androidRunner:      "com.android.support.test:runner:${runnerVersion}",
-            androidRules:       "com.android.support.test:rules:${runnerVersion}"
+            androidRules:       "com.android.support.test:rules:${runnerVersion}",
+            archTesting:        "android.arch.core:core-testing:${archCompVersion}",
+            robolectric:        "org.robolectric:robolectric:${robolectricVersion}",
     ]
 }

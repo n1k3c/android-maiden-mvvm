@@ -16,27 +16,17 @@ class RestaurantViewModel @Inject constructor(private val getRestaurants: GetRes
                                               private val mapper: RestaurantViewMapper)
     : BaseViewModel() {
 
-    private val _restaurantResult: MutableLiveData<Resource<List<RestaurantView>>> = MutableLiveData()
-    val restaurantResult: LiveData<Resource<List<RestaurantView>>>
-        get() = _restaurantResult
+    private val restaurantResult: MutableLiveData<Resource<List<RestaurantView>>> = MutableLiveData()
 
-    fun getRestaurants() {
+    fun getRestaurants():  LiveData<Resource<List<RestaurantView>>> {
+        return restaurantResult
+    }
 
-        _restaurantResult.postValue(Resource(ResourceState.LOADING, null, null))
+    fun fetchRestaurants() {
+
+        restaurantResult.postValue(Resource(ResourceState.LOADING, null, null))
+
         getRestaurants.execute(RestaurantsSubscriber())
-
-//        disposable = restaurantsRepository.getRestaurants()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(
-//                        { data ->
-//                            _restaurantResult.postValue(Resource(ResourceState.SUCCESS, data, null))
-//                        },
-//                        { error ->
-//                            d { error.toString() }
-//                            _restaurantResult.postValue(Resource(ResourceState.ERROR, _restaurantResult.value?.data, error.localizedMessage))
-//                        }
-//                )
     }
 
     inner class RestaurantsSubscriber : DisposableObserver<List<Restaurant>>() {
@@ -45,12 +35,12 @@ class RestaurantViewModel @Inject constructor(private val getRestaurants: GetRes
         }
 
         override fun onNext(data: List<Restaurant>) {
-            _restaurantResult.postValue(Resource(ResourceState.SUCCESS,
+            restaurantResult.postValue(Resource(ResourceState.SUCCESS,
                     data.map { mapper.mapToView(it) }, null))
         }
 
         override fun onError(e: Throwable) {
+            restaurantResult.postValue(Resource(ResourceState.ERROR, null, e.localizedMessage))
         }
-
     }
 }

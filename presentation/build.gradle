@@ -133,30 +133,34 @@ dependencies {
     compileOnly presentationDependencies.glassfishAnnotation
 
     // Instrumentation test dependencies
-    androidTestImplementation presentationTestDependencies.junit
-    androidTestImplementation presentationTestDependencies.mockito
-    androidTestImplementation presentationTestDependencies.mockitoAndroid
-    androidTestImplementation(presentationTestDependencies.espressoCore) {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    androidTestImplementation(presentationTestDependencies.androidRunner) {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    androidTestImplementation(presentationTestDependencies.androidRules) {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    androidTestImplementation(presentationTestDependencies.espressoIntents) {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    androidTestImplementation(presentationTestDependencies.espressoContrib) {
-        exclude module: 'appcompat'
-        exclude module: 'appcompat-v7'
-        exclude module: 'support-v4'
-        exclude module: 'support-v13'
-        exclude module: 'support-annotations'
-        exclude module: 'recyclerview-v7'
-        exclude module: 'design'
-    }
+    testCompile presentationTestDependencies.junit
+    testCompile presentationTestDependencies.mockito
+//    androidTestImplementation presentationTestDependencies.mockitoAndroid
+    testCompile presentationTestDependencies.archTesting
+    testCompile presentationTestDependencies.assertj
+    testCompile presentationTestDependencies.robolectric
+    testCompile presentationTestDependencies.mockitoInline
+//    androidTestImplementation(presentationTestDependencies.espressoCore) {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    }
+//    androidTestImplementation(presentationTestDependencies.androidRunner) {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    }
+//    androidTestImplementation(presentationTestDependencies.androidRules) {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    }
+//    androidTestImplementation(presentationTestDependencies.espressoIntents) {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    }
+//    androidTestImplementation(presentationTestDependencies.espressoContrib) {
+//        exclude module: 'appcompat'
+//        exclude module: 'appcompat-v7'
+//        exclude module: 'support-v4'
+//        exclude module: 'support-v13'
+//        exclude module: 'support-annotations'
+//        exclude module: 'recyclerview-v7'
+//        exclude module: 'design'
+//    }
 
     kaptTest presentationDependencies.daggerCompiler
     kaptAndroidTest presentationDependencies.daggerCompiler
