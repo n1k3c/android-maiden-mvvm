@@ -1,7 +1,7 @@
 package n1x0nj4.maidenmvvm.di.module
 
 import android.content.Context
-import com.n1x0nj4.data.RestaurantsRemoteImpl
+import com.n1x0nj4.data.interactor.RestaurantsRemoteImpl
 import com.n1x0nj4.data.remote.ApiService
 import com.n1x0nj4.data.remote.ApiServiceFactory
 import com.n1x0nj4.data.repository.RestaurantsRemote

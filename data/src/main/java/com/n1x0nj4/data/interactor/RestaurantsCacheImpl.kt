@@ -1,4 +1,4 @@
-package com.n1x0nj4.data
+package com.n1x0nj4.data.interactor
 
 import com.n1x0nj4.data.cache.db.RestaurantsDatabase
 import com.n1x0nj4.data.cache.mapper.CachedRestaurantMapper

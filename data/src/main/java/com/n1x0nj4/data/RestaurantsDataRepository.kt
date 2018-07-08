@@ -1,8 +1,9 @@
 package com.n1x0nj4.data
 
+import com.n1x0nj4.data.interactor.RestaurantsCacheImpl
+import com.n1x0nj4.data.interactor.RestaurantsRemoteImpl
 import com.n1x0nj4.data.mapper.RestaurantMapper
 import com.n1x0nj4.data.repository.RestaurantsCache
-import com.n1x0nj4.data.store.RestaurantsDataStoreFactory
 import com.n1x0nj4.domain.model.Restaurant
 import com.n1x0nj4.domain.repository.RestaurantsRepository
 import io.reactivex.Observable
@@ -12,7 +13,8 @@ import javax.inject.Inject
 class RestaurantsDataRepository @Inject constructor(
         private val mapper: RestaurantMapper,
         private val cache: RestaurantsCache,
-        private val factory: RestaurantsDataStoreFactory)
+        private val cacheRepository: RestaurantsCacheImpl,
+        private val remoteRepository: RestaurantsRemoteImpl)
     : RestaurantsRepository {
 
     override fun getRestaurants(): Observable<List<Restaurant>> {
@@ -22,12 +24,18 @@ class RestaurantsDataRepository @Inject constructor(
                     Pair(areCached, isExpired)
                 })
                 .flatMap {
-                    factory.getDataStore(it.first, it.second).getRestaurants().toObservable()
-                            .distinctUntilChanged()
+                    val restaurantsCached = it.first
+                    val cacheExpired = it.second
+
+                    if (restaurantsCached && !cacheExpired) {
+                        cacheRepository.getRestaurants().toObservable().distinctUntilChanged()
+                    } else {
+                        remoteRepository.getRestaurants().toObservable().distinctUntilChanged()
+                    }
                 }
                 .flatMap { restaurants ->
-                    factory.getCacheDataStore()
-                            .saveRestaurants(restaurants)
+                    cacheRepository.setLastCacheTime(System.currentTimeMillis())
+                            .andThen(cacheRepository.saveRestaurants(restaurants))
                             .andThen(Observable.just(restaurants))
                 }
                 .map {

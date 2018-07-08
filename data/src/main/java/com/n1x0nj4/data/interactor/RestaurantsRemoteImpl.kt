@@ -1,4 +1,4 @@
-package com.n1x0nj4.data
+package com.n1x0nj4.data.interactor
 
 import com.n1x0nj4.data.remote.ApiService
 import com.n1x0nj4.data.remote.model.RestaurantResponse
