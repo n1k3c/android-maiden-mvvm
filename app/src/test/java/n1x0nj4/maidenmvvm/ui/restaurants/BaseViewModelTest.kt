@@ -6,9 +6,9 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
-import org.mockito.junit.MockitoJUnitRunner
+import org.junit.runners.JUnit4
 
-@RunWith(MockitoJUnitRunner::class)
+@RunWith(JUnit4::class)
 abstract class BaseViewModelTest() {
 
     @Rule

@@ -2,37 +2,40 @@ package n1x0nj4.maidenmvvm.ui.restaurants
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import com.github.ajalt.timberkt.d
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.observers.DisposableObserver
+import n1x0nj4.maidenmvvm.data.GetRestaurantsInteractor
 import n1x0nj4.maidenmvvm.model.Restaurant
-import n1x0nj4.maidenmvvm.repository.RestaurantsRepository
 import n1x0nj4.maidenmvvm.state.Resource
 import n1x0nj4.maidenmvvm.state.ResourceState
 import n1x0nj4.maidenmvvm.ui.common.BaseViewModel
 import javax.inject.Inject
 
-class RestaurantViewModel @Inject constructor(private val restaurantsRepository: RestaurantsRepository) : BaseViewModel() {
+class RestaurantViewModel @Inject constructor(private val getRestaurants: GetRestaurantsInteractor) : BaseViewModel() {
 
-    private val _restaurantResult: MutableLiveData<Resource<List<Restaurant>>> = MutableLiveData()
-    val restaurantResult: LiveData<Resource<List<Restaurant>>>
-        get() = _restaurantResult
+    private val restaurantResult: MutableLiveData<Resource<List<Restaurant>>> = MutableLiveData()
 
-    fun getRestaurants() {
+    fun getRestaurants(): LiveData<Resource<List<Restaurant>>> {
+        return restaurantResult
+    }
 
-        _restaurantResult.postValue(Resource(ResourceState.LOADING, null, null))
+    fun fetchRestaurants() {
 
-        disposable = restaurantsRepository.fetchRestaurantsFromAPI()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { data ->
-                            _restaurantResult.postValue(Resource(ResourceState.SUCCESS, data, null))
-                        },
-                        { error ->
-                            d { error.toString() }
-                            _restaurantResult.postValue(Resource(ResourceState.ERROR, _restaurantResult.value?.data, error.localizedMessage))
-                        }
-                )
+        restaurantResult.postValue(Resource(ResourceState.LOADING, null, null))
+
+        getRestaurants.execute(RestaurantsSubscriber())
+    }
+
+    inner class RestaurantsSubscriber : DisposableObserver<List<Restaurant>>() {
+        override fun onComplete() {
+
+        }
+
+        override fun onNext(data: List<Restaurant>) {
+            restaurantResult.postValue(Resource(ResourceState.SUCCESS, data, null))
+        }
+
+        override fun onError(e: Throwable) {
+            restaurantResult.postValue(Resource(ResourceState.ERROR, null, e.localizedMessage))
+        }
     }
 }

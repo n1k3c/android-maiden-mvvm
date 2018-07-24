@@ -87,6 +87,7 @@ dependencies {
     testImplementation "android.arch.core:core-testing:$project.archVersion"
     testImplementation "org.mockito:mockito-core:$project.mockitoVersion"
     testImplementation "org.mockito:mockito-inline:$project.mockitoVersion"
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC1'
     // Dagger
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
     implementation "com.google.dagger:dagger-android:$rootProject.daggerVersion"

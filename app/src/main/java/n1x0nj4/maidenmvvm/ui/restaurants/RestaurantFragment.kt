@@ -31,13 +31,13 @@ class RestaurantFragment : BaseFragment(), RestaurantsAdapter.OnRestaurantClickL
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(RestaurantViewModel::class.java)
 
-        viewModel.getRestaurants()
+        viewModel.fetchRestaurants()
     }
 
     override fun onStart() {
         super.onStart()
 
-        viewModel.restaurantResult.observe(this,
+        viewModel.getRestaurants().observe(this,
                 Observer<Resource<List<Restaurant>>> {
                     it?.let {
                         handleDataState(it)
