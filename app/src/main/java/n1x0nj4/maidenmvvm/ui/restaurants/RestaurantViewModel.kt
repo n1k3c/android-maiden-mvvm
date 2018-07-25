@@ -2,15 +2,15 @@ package n1x0nj4.maidenmvvm.ui.restaurants
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.ViewModel
 import io.reactivex.observers.DisposableObserver
 import n1x0nj4.maidenmvvm.data.GetRestaurantsInteractor
 import n1x0nj4.maidenmvvm.model.Restaurant
 import n1x0nj4.maidenmvvm.state.Resource
 import n1x0nj4.maidenmvvm.state.ResourceState
-import n1x0nj4.maidenmvvm.ui.common.BaseViewModel
 import javax.inject.Inject
 
-class RestaurantViewModel @Inject constructor(private val getRestaurants: GetRestaurantsInteractor) : BaseViewModel() {
+class RestaurantViewModel @Inject constructor(private val getRestaurants: GetRestaurantsInteractor) : ViewModel() {
 
     private val restaurantResult: MutableLiveData<Resource<List<Restaurant>>> = MutableLiveData()
 
@@ -37,5 +37,10 @@ class RestaurantViewModel @Inject constructor(private val getRestaurants: GetRes
         override fun onError(e: Throwable) {
             restaurantResult.postValue(Resource(ResourceState.ERROR, null, e.localizedMessage))
         }
+    }
+
+    override fun onCleared() {
+        getRestaurants.dispose()
+        super.onCleared()
     }
 }
